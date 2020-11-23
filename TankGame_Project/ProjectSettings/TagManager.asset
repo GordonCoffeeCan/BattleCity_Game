@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - Wall
   - Barrier
+  - EnvPivots
   layers:
   - Default
   - TransparentFX

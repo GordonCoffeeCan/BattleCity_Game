@@ -11,7 +11,12 @@ public class GameManager : MonoBehaviour {
 	public bool isDead = false;
 	public bool isDefeated = false;
 
+	[HideInInspector] public Vector3 camNewPositon;
+	[HideInInspector] public int currentRoonNumber = 0;
+
 	//reference
+	private Transform camTrans;
+	private float camTransSpeed = 10f;
 	public Born born;
 	public Text playerScoreText;
 	public Text playerLifeText;
@@ -24,19 +29,16 @@ public class GameManager : MonoBehaviour {
         get {
             return instance;
         }
-
-        set {
-            instance = value;
-        }
     }
 
 	private void Awake() {
 		instance = this;
+		camTrans = Camera.main.transform;
     }
 
     // Use this for initialization
     void Start () {
-		
+		camNewPositon = camTrans.position;
 	}
 	
 	// Update is called once per frame
@@ -51,6 +53,8 @@ public class GameManager : MonoBehaviour {
         }
 		playerScoreText.text = playerScore.ToString();
 		playerLifeText.text = lifeValue.ToString();
+
+		CamTransition(camNewPositon);
 	}
 
 	private void Recover() {
@@ -63,6 +67,10 @@ public class GameManager : MonoBehaviour {
 			_bornClone.createPlayer = true;
 			isDead = false;
         }
+    }
+
+	private void CamTransition(Vector3 _newPos) {
+		camTrans.position = Vector3.Lerp(camTrans.position, _newPos, camTransSpeed * Time.deltaTime);
     }
 
 	private void ReturnToTitle() {
