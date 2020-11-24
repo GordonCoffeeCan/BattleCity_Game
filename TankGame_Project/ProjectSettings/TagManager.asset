@@ -10,6 +10,7 @@ TagManager:
   - Wall
   - Barrier
   - EnvPivots
+  - RoomTransTrigger
   layers:
   - Default
   - TransparentFX

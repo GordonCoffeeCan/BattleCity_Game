@@ -68,7 +68,8 @@ public class MapBuilder : MonoBehaviour {
 			if (_num == 0) {
 				continue;
 			} else {
-				CreateItems(mapItems[0], envPivots[i].transform.position, Quaternion.identity);
+				int _i = Random.Range(0, 2);
+				CreateItems(mapItems[_i], envPivots[i].transform.position, Quaternion.identity);
 			}
 		}
 
